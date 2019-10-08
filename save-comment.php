@@ -3,10 +3,7 @@
 use App\Model\Article;
 use App\Model\Comment;
 
-require_once "src/database.php";
-require_once "src/utils.php";
-require_once "src/Model/Article.php";
-require_once "src/Model/Comment.php";
+require_once "src/autoload.php";
 
 $author = null;
 if (!empty($_POST['author'])) {

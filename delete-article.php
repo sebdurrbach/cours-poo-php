@@ -2,9 +2,7 @@
 
 use App\Model\Article;
 
-require_once "src/database.php";
-require_once "src/utils.php";
-require_once "src/Model/Article.php";
+require_once "src/autoload.php";
 
 if (empty($_GET['id']) || !ctype_digit($_GET['id'])) {
     die("Ho ?! Tu n'as pas précisé l'id de l'article !");
