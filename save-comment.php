@@ -1,7 +1,12 @@
 <?php
 
+use App\Model\Article;
+use App\Model\Comment;
+
 require_once "src/database.php";
 require_once "src/utils.php";
+require_once "src/Model/Article.php";
+require_once "src/Model/Comment.php";
 
 $author = null;
 if (!empty($_POST['author'])) {
@@ -22,12 +27,14 @@ if (!$author || !$article_id || !$content) {
     die("Votre formulaire a été mal rempli !");
 }
 
-$article = findArticle($article_id);
+$model = new Article();
+$article = $model->find($article_id);
 
 if (!$article) {
     die("Ho ! L'article $article_id n'existe pas boloss !");
 }
 
-createComment($author, $content, $article_id);
+$commentModel = new Comment();
+$commentModel->create($author, $content, $article_id);
 
 redirect("article.php?id=" . $article_id);
