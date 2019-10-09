@@ -3,15 +3,18 @@
 namespace App\Controller;
 
 use App\Model\Article as ArticleModel;
+use App\Model\Comment as CommentModel;
 
 class Article extends Controller
 {
 
     protected $model;
+    protected $commentModel;
 
-    public function __construct()
+    public function __construct(ArticleModel $model, CommentModel $commentModel)
     {
-        $this->model = new ArticleModel;
+        $this->model = $model;
+        $this->commentModel = $commentModel;
     }
 
     /**
@@ -36,8 +39,7 @@ class Article extends Controller
     {
         $article = $this->model->find($article_id);
 
-        $commentModel = new \App\Model\Comment();
-        $commentaires = $commentModel->findAll($article_id);
+        $commentaires = $this->commentModel->findAll($article_id);
 
         $this->render("articles/show", $article['title'], compact("article_id", "commentaires", "article"));
     }

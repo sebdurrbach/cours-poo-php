@@ -11,9 +11,8 @@ abstract class Model
 
     protected $db;
 
-    public function __construct()
+    public function __construct(Database $database)
     {
-        $database = new Database;
         $this->db = $database->getConnection();
     }
 }

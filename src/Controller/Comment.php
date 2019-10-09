@@ -2,15 +2,18 @@
 
 namespace App\Controller;
 
+use App\Model\Article as ArticleModel;
 use App\Model\Comment as CommentModel;
 
 class Comment extends Controller
 {
     protected $model;
+    protected $articleModel;
 
-    public function __construct()
+    public function __construct(CommentModel $model, ArticleModel $articleModel)
     {
-        $this->model = new CommentModel;
+        $this->model = $model;
+        $this->articleModel = $articleModel;
     }
 
     public function delete(int $id)
@@ -49,8 +52,7 @@ class Comment extends Controller
             die("Votre formulaire a été mal rempli !");
         }
 
-        $articleModel = new \App\Model\Article();
-        $article = $articleModel->find($article_id);
+        $article = $this->articleModel->find($article_id);
 
         if (!$article) {
             die("Ho ! L'article $article_id n'existe pas boloss !");
