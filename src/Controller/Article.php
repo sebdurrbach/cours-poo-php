@@ -4,7 +4,7 @@ namespace App\Controller;
 
 use App\Model\Article as ArticleModel;
 
-class Article
+class Article extends Controller
 {
 
     protected $model;
@@ -21,7 +21,7 @@ class Article
      */
     public function index()
     {
-        render("articles/index", "Accueil", [
+        $this->render("articles/index", "Accueil", [
             "articles" => $this->model->findAll()
         ]);
     }
@@ -39,7 +39,7 @@ class Article
         $commentModel = new \App\Model\Comment();
         $commentaires = $commentModel->findAll($article_id);
 
-        render("articles/show", $article['title'], compact("article_id", "commentaires", "article"));
+        $this->render("articles/show", $article['title'], compact("article_id", "commentaires", "article"));
     }
 
     /**
@@ -58,6 +58,6 @@ class Article
 
         $this->model->delete($id);
 
-        redirect("/");
+        $this->redirect("/");
     }
 }

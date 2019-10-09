@@ -2,7 +2,7 @@
 
 use App\Router;
 
-require_once "src/autoload.php";
+require_once "config/autoload.php";
 
 $routes = require "config/routes.php";
 

@@ -53,7 +53,6 @@ class Router
         return false;
     }
 
-
     /**
      * Extrait les paramètres variables d'un chemin concret par rapport à un model de route
      *

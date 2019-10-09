@@ -4,7 +4,7 @@ namespace App\Controller;
 
 use App\Model\Comment as CommentModel;
 
-class Comment
+class Comment extends Controller
 {
     protected $model;
 
@@ -25,7 +25,7 @@ class Comment
 
         $this->model->delete($id);
 
-        redirect("/article/" . $article_id);
+        $this->redirect("/article/" . $article_id);
     }
 
     public function create()
@@ -58,6 +58,6 @@ class Comment
 
         $this->model->create($author, $content, $article_id);
 
-        redirect("/article/" . $article_id);
+        $this->redirect("/article/" . $article_id);
     }
 }

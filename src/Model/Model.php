@@ -2,6 +2,8 @@
 
 namespace App\Model;
 
+use App\Database;
+
 require_once "src/database.php";
 
 abstract class Model
@@ -11,6 +13,7 @@ abstract class Model
 
     public function __construct()
     {
-        $this->db = getPdo();
+        $database = new Database;
+        $this->db = $database->getConnection();
     }
 }
