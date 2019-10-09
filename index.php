@@ -1,11 +1,9 @@
 <?php
 
-use App\Model\Article;
+use App\Controller\Article;
 
 require_once "src/autoload.php";
 
-$model = new Article();
+$controller = new Article();
 
-render("articles/index", "Accueil", [
-    "articles" => $model->findAll()
-]);
+$controller->index();
