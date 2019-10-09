@@ -14,6 +14,11 @@ class Article
         $this->model = new ArticleModel;
     }
 
+    /**
+     * Page d'accueil
+     *
+     * @return void
+     */
     public function index()
     {
         render("articles/index", "Accueil", [
@@ -21,6 +26,12 @@ class Article
         ]);
     }
 
+    /**
+     * Page d'article avec ID
+     *
+     * @param integer $article_id
+     * @return void
+     */
     public function show(int $article_id)
     {
         $article = $this->model->find($article_id);
@@ -31,6 +42,12 @@ class Article
         render("articles/show", $article['title'], compact("article_id", "commentaires", "article"));
     }
 
+    /**
+     * Suppression d'article avec ID
+     *
+     * @param integer $id
+     * @return void
+     */
     public function delete(int $id)
     {
         $article = $this->model->find($id);
