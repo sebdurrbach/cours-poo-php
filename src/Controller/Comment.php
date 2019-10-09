@@ -13,15 +13,10 @@ class Comment
         $this->model = new CommentModel;
     }
 
-    public function delete()
+    public function delete(int $id)
     {
-        if (empty($_GET['id']) || !ctype_digit($_GET['id'])) {
-            die("Ho ! Fallait préciser le paramètre id en GET !");
-        }
-
-        $id = $_GET['id'];
-
         $commentaire = $this->model->find($id);
+
         if (!$commentaire) {
             die("Aucun commentaire n'a l'identifiant $id !");
         }
@@ -30,7 +25,7 @@ class Comment
 
         $this->model->delete($id);
 
-        redirect("article.php?id=" . $article_id);
+        redirect("/article/" . $article_id);
     }
 
     public function create()
@@ -63,6 +58,6 @@ class Comment
 
         $this->model->create($author, $content, $article_id);
 
-        redirect("article.php?id=" . $article_id);
+        redirect("/article/" . $article_id);
     }
 }

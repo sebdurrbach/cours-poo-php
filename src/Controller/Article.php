@@ -21,18 +21,8 @@ class Article
         ]);
     }
 
-    public function show()
+    public function show(int $article_id)
     {
-        $article_id = null;
-
-        if (!empty($_GET['id']) && ctype_digit($_GET['id'])) {
-            $article_id = $_GET['id'];
-        }
-
-        if (!$article_id) {
-            die("Vous devez préciser un paramètre `id` dans l'URL !");
-        }
-
         $article = $this->model->find($article_id);
 
         $commentModel = new \App\Model\Comment();
@@ -41,14 +31,8 @@ class Article
         render("articles/show", $article['title'], compact("article_id", "commentaires", "article"));
     }
 
-    public function delete()
+    public function delete(int $id)
     {
-        if (empty($_GET['id']) || !ctype_digit($_GET['id'])) {
-            die("Ho ?! Tu n'as pas précisé l'id de l'article !");
-        }
-
-        $id = $_GET['id'];
-
         $article = $this->model->find($id);
 
         if (!$article) {
@@ -57,6 +41,6 @@ class Article
 
         $this->model->delete($id);
 
-        redirect("index.php");
+        redirect("/");
     }
 }
